@@ -1,0 +1,18 @@
+Artificial Intelligence:
+
+It is creating system that mimic human intelligence.
+
+Machine Learning:
+
+It is subset of AI, which can learn from data.
+
+Deep Learning:
+
+It is a specialised subset of Machine Learning, which is used with neural networks.
+
+
+First We can go through Machine Learning:
+
+It is using data to learn patterns to predict the output using of machine learning models.
+
+
