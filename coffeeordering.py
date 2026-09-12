@@ -10,6 +10,7 @@ def run_coffee_shop():
         6: ("Cold Brew", 4.25),
         7: ("Croissant", 2.75),
         8: ("Blueberry Muffin", 3.25),
+        9: ("Filter Coffee", 2.21),
     }
     
     order = []
