@@ -80,7 +80,7 @@ def run_coffee_shop():
 
         conn.commit()
         conn.close()
-        print("[Order saved to database!]")
+        print("[Thanks! Visit Again]")
         
 if __name__ == "__main__":
     run_coffee_shop()
