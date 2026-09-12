@@ -1,4 +1,4 @@
-import sys
+import sqlite3
 
 def run_coffee_shop():
     menu = {
@@ -52,14 +52,35 @@ def run_coffee_shop():
     if order:
         for item_num, item_name, price in order:
             print(f"- {item_name}: ${price:.2f}")
-    
+
         print(f"total no of items you ordered:{len(order)}")
         print(f"total order value:{total_price}")
-    else:
-        print("no items ordered")
-            
-    print(f"\nThanks for visiting, {Customer_Name}! Have a great day!")
-        
+
+        # --- ADD THESE LINES TO SAVE TO DATABASE ---
+        conn = sqlite3.connect("cafe.db")
+        cursor = conn.cursor()
+
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS orders (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            customer_name TEXT NOT NULL,
+            total_items INTEGER NOT NULL,
+            total_price REAL NOT NULL,
+            order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+        )
+        """)
+
+        cursor.execute(
+            """
+        INSERT INTO orders (customer_name, total_items, total_price)
+        VALUES (?, ?, ?)
+        """,
+            (Customer_Name, len(order), total_price),
+        )
+
+        conn.commit()
+        conn.close()
+        print("[Order saved to database!]")
         
 if __name__ == "__main__":
     run_coffee_shop()

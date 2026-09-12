@@ -1,0 +1,46 @@
+import sqlite3
+def search_customer():
+    # 1. Connect to a database file (creates 'cafe.db' if it doesn't exist)
+    conn = sqlite3.connect("cafe.db")   # it will create or open a database file on my project
+
+    # 2. Create a cursor object to run commands
+    cursor = conn.cursor()  # cursor is like an object, it acts like a pointer that executes sql commands.
+
+    # 3. Create a table using SQL syntax
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS orders(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        customer_name TEXT NOT NULL,
+        total_items INTEGER NOT NULL,
+        total_price REAL NOT NULL,
+        order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+    )
+    """)
+
+    # 4. Save (commit) the changes and close the connection
+
+    conn.commit()
+
+    print("Database and 'orders' table created successfully!")
+
+    customer_search = input("enter customer_name:").strip()
+    cursor.execute(
+        "SELECT * FROM orders WHERE customer_name = ?",(customer_search,)
+    )
+    customer_orders = cursor.fetchall()
+
+
+    # --- STAGE 3: DISPLAY RESULTS & CLEANUP ---
+    print(f"\n--- Orders for {customer_search} ---")
+    if not customer_orders:
+        print("No order found!")
+    else:
+        for order in customer_orders:
+            order_id, name, items, price, date = order
+            print(
+                    f"Order #{order_id} | Name: {name} | Items: {items} | Total: ${price:.2f} | Date: {date}"
+                )
+    conn.close()
+
+if __name__ == "__main__":
+    search_customer()
