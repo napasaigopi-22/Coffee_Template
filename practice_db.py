@@ -17,6 +17,16 @@ def search_customer():
     )
     """)
 
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS order_items(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        order_id INTEGER NOT NULL,
+        item_name TEXT NOT NULL,
+        item_price REAL NOT NULL,
+        FOREIGN KEY(order_id) REFERENCES orders(id)
+    )
+""")
+
     # 4. Save (commit) the changes and close the connection
 
     conn.commit()
@@ -29,7 +39,6 @@ def search_customer():
     )
     customer_orders = cursor.fetchall()
 
-
     # --- STAGE 3: DISPLAY RESULTS & CLEANUP ---
     print(f"\n--- Orders for {customer_search} ---")
     if not customer_orders:
@@ -40,6 +49,19 @@ def search_customer():
             print(
                     f"Order #{order_id} | Name: {name} | Items: {items} | Total: ${price:.2f} | Date: {date}"
                 )
+
+        order_search = int(input("enter order_id:"))
+        cursor.execute(
+            "SELECT item_name, item_price FROM order_items WHERE order_id = ?",(order_search,)
+        )
+        items_details = cursor.fetchall()
+            
+        print("   Ordered Items:")
+        if not items_details:
+            print("No order items are there. please try place a NEW Order in coffee_day")
+        else:
+            for item_name, item_price in items_details:
+                print(f"Order details: Item_name:{item_name}, Item_price:{item_price}")
     conn.close()
 
 if __name__ == "__main__":

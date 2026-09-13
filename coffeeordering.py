@@ -71,6 +71,16 @@ def run_coffee_shop():
         )
         """)
 
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS order_items(
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    order_id INTEGER NULL,
+                    item_name TEXT NOT NULL,
+                    item_price REAL NOT NULL,
+                    FOREIGN KEY (order_id) REFERENCES orders(id)
+            )
+        """)
+
         cursor.execute(
             """
         INSERT INTO orders (customer_name, total_items, total_price)
@@ -78,10 +88,21 @@ def run_coffee_shop():
         """,
             (Customer_Name, len(order), total_price),
         )
+        new_order_id = cursor.lastrowid
+
+        for item_num, item_name, price in order:
+            cursor.execute(
+                    """
+                INSERT INTO order_items (order_id, item_name, item_price)
+                VALUES (?,?,?)
+                """,
+                (new_order_id, item_name, price)
+                )
+
 
         conn.commit()
         conn.close()
-        print("[Thanks! Visit Again]")
+        print(f"Thanks! Visit Again {Customer_Name}")
         
 if __name__ == "__main__":
     run_coffee_shop()
