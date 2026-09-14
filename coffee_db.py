@@ -33,6 +33,18 @@ def search_customer():
 
     print("Database and 'orders' table created successfully!")
 
+    cursor.execute(
+            "SELECT id, customer_name FROM orders"
+        )
+    customers_names = cursor.fetchall()
+    
+    print("\n--- ALL CUSTOMERS & ORDER IDs ---")
+    if not customers_names: 
+        print("no customer is found as per date:")
+    else:
+        for id, customers in customers_names:           
+            print(f"Customers name:{customers},and their id:{id}") 
+
     customer_search = input("enter customer_name:").strip()
     cursor.execute(
         "SELECT * FROM orders WHERE customer_name = ?",(customer_search,)
