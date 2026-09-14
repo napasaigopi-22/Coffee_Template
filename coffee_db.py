@@ -43,7 +43,7 @@ def search_customer():
         print("no customer is found as per date:")
     else:
         for id, customers in customers_names:           
-            print(f"Customers name:{customers},and their id:{id}") 
+            print(f"Customer name:{customers},and their id:{id}") 
 
     customer_search = input("enter customer_name:").strip()
     cursor.execute(
