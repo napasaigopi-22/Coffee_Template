@@ -56,7 +56,7 @@ def search_customer():
         )
         items_details = cursor.fetchall()
             
-        print("   Ordered Items:")
+        print("Ordered Items:")
         if not items_details:
             print("No order items are there. please try place a NEW Order in coffee_day")
         else:

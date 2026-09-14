@@ -2,4 +2,8 @@ Day 1: Started learning Python
 Day 3: Built my first Python script
 Day 5: Completed a Python project
 [1, 4, 9, 16, 25]
+['Breaking Bad', 'Game Of Thrones', 'Stranger Things', 'The Mandalorian', 'The Office'][1, 4, 9, 16, 25]
+['Breaking Bad', 'Game Of Thrones', 'Stranger Things', 'The Mandalorian', 'The Office'][1, 4, 9, 16, 25]
+['Breaking Bad', 'Game Of Thrones', 'Stranger Things', 'The Mandalorian', 'The Office'][1, 4, 9, 16, 25]
+['Breaking Bad', 'Game Of Thrones', 'Stranger Things', 'The Mandalorian', 'The Office'][1, 4, 9, 16, 25]
 ['Breaking Bad', 'Game Of Thrones', 'Stranger Things', 'The Mandalorian', 'The Office']

@@ -22,3 +22,13 @@ print(captalised_tv_shows)
     
 with open("python_entries.txt", "a") as python_file:
     python_file.write(str(captalised_tv_shows))
+
+
+
+fruits = ['apples','banana','pappaya','sugar crane']
+
+new_fruits_list = []
+
+new_fruits_list = [(i.upper()) for i in fruits]
+print("old_fruits_list: ",fruits)
+print("new_fruits_list: ",new_fruits_list)
