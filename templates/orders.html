@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-heading">
+    <p class="eyebrow">Saved orders</p>
+    <h1>Customer Orders</h1>
+    <p>Search by customer name or browse the latest saved orders.</p>
+</section>
+
+<form class="search-form" action="{{ url_for('orders') }}" method="get">
+    <label class="field">
+        <span>Customer name</span>
+        <input type="text" name="customer_name" value="{{ customer_name }}" placeholder="Search customer">
+    </label>
+    <button class="primary-button" type="submit">Search</button>
+</form>
+
+{% if orders %}
+    <section class="orders-list">
+        {% for order in orders %}
+            <article class="order-row">
+                <div>
+                    <strong>#{{ order.id }} - {{ order.customer_name }}</strong>
+                    <span>{{ order.order_date }}</span>
+                </div>
+                <div>
+                    <span>{{ order.total_items }} items</span>
+                    <strong>${{ "%.2f"|format(order.total_price) }}</strong>
+                </div>
+                <a href="{{ url_for('receipt', order_id=order.id) }}">Receipt</a>
+            </article>
+        {% endfor %}
+    </section>
+{% else %}
+    <p class="empty-state">No orders found.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-heading">
+    <p class="eyebrow">Receipt</p>
+    <h1>Thanks, {{ order.customer_name }}</h1>
+    <p>Your order #{{ order.id }} was saved successfully.</p>
+</section>
+
+<section class="receipt">
+    <div class="receipt-meta">
+        <span>Date</span>
+        <strong>{{ order.order_date }}</strong>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.item_name }}</td>
+                    <td>${{ "%.2f"|format(item.item_price) }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>{{ order.total_items }} items</th>
+                <th>${{ "%.2f"|format(order.total_price) }}</th>
+            </tr>
+        </tfoot>
+    </table>
+</section>
+
+<div class="actions">
+    <a class="secondary-button" href="{{ url_for('index') }}">New Order</a>
+    <a class="secondary-button" href="{{ url_for('orders') }}">View Orders</a>
+</div>
+{% endblock %}

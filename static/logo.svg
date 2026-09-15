@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Python Cafe logo">
+  <rect width="64" height="64" rx="14" fill="#176f5f"/>
+  <path d="M18 26h27v12c0 7.2-5.8 13-13 13h-1c-7.2 0-13-5.8-13-13V26z" fill="#fff8ef"/>
+  <path d="M45 30h3.5a6.5 6.5 0 0 1 0 13H45" fill="none" stroke="#fff8ef" stroke-width="5" stroke-linecap="round"/>
+  <path d="M25 13c-3 3-3 6 0 9M34 13c-3 3-3 6 0 9" fill="none" stroke="#ffd166" stroke-width="4" stroke-linecap="round"/>
+  <path d="M23 36h18" stroke="#176f5f" stroke-width="4" stroke-linecap="round"/>
+</svg>

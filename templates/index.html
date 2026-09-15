@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-heading">
+    <p class="eyebrow">Fresh orders</p>
+    <h1>Order Your Coffee</h1>
+    <p>Select the items you want and place your order.</p>
+</section>
+
+<form class="order-form" action="{{ url_for('order') }}" method="post">
+    <label class="field">
+        <span>Customer name</span>
+        <input type="text" name="customer_name" placeholder="Enter your name" required>
+    </label>
+
+    <section class="menu-grid" aria-label="Cafe menu items">
+        {% for item in menu_items %}
+            <label class="menu-item">
+                <input type="checkbox" name="items" value="{{ item.id }}">
+                <span class="item-info">
+                    <span>
+                        <strong>{{ item.name }}</strong>
+                        <small>{{ item.description }}</small>
+                    </span>
+                    <span class="item-price">${{ "%.2f"|format(item.price) }}</span>
+                </span>
+            </label>
+        {% endfor %}
+    </section>
+
+    <button class="primary-button" type="submit">Place Order</button>
+</form>
+{% endblock %}

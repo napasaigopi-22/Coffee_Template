@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="about-hero">
+    <div>
+        <p class="eyebrow">About us</p>
+        <h1>A small cafe system built from your Python project.</h1>
+        <p>
+            Python Cafe began as a command-line ordering program. Now it has a
+            browser menu, customer order flow, receipts, and saved order history
+            using SQLite.
+        </p>
+    </div>
+    <div class="about-panel">
+        <span>Today's focus</span>
+        <strong>Simple ordering, clean records, and easy learning.</strong>
+    </div>
+</section>
+
+<section class="about-grid">
+    <article>
+        <h2>What customers can do</h2>
+        <p>Select coffee or bakery items, submit an order, and get a receipt immediately.</p>
+    </article>
+    <article>
+        <h2>What the database stores</h2>
+        <p>Customer name, order total, item count, order date, and each ordered item.</p>
+    </article>
+    <article>
+        <h2>What you can improve next</h2>
+        <p>Add quantities, login, admin controls, item images, or online deployment.</p>
+    </article>
+</section>
+{% endblock %}
