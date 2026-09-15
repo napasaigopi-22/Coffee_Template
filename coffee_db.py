@@ -10,7 +10,7 @@ def search_customer():
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS orders(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        customer_name TEXT NOT NULL,
+        customer_name VARCHAR(50) NOT NULL,
         total_items INTEGER NOT NULL,
         total_price REAL NOT NULL,
         order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
@@ -68,7 +68,7 @@ def search_customer():
         )
         items_details = cursor.fetchall()
             
-        print("Ordered Items:")
+        print(f"Ordered Items:{items}")
         if not items_details:
             print("No order items are there. please try place a NEW Order in coffee_day")
         else:
