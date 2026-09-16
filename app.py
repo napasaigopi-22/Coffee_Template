@@ -7,6 +7,7 @@ from coffee_db import (
     get_order_items,
     init_db,
     search_orders_by_customer,
+    delete_order_detail,
 )
 from coffeeordering import build_order, get_menu_items
 
@@ -27,7 +28,7 @@ def about():
     return render_template("about.html")
 
 
-@app.route("/order", methods=["POST"])
+@app.route("/Order", methods=["POST"])
 def order():
     customer_name = request.form.get("customer_name", "").strip()
     selected_items = request.form.getlist("items")
@@ -77,6 +78,12 @@ def orders():
         orders=order_list,
         customer_name=customer_name,
     )
+
+@app.route("/delete/<int:order_id>")
+def delete(order_id):
+    delete_order_detail(order_id)
+    flash("Order deleted successfully.")
+    return redirect(url_for("orders"))
 
 
 if __name__ == "__main__":

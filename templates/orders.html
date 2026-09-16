@@ -28,6 +28,7 @@
                     <strong>${{ "%.2f"|format(order.total_price) }}</strong>
                 </div>
                 <a href="{{ url_for('receipt', order_id=order.id) }}">Receipt</a>
+                <a href="{{ url_for('delete', order_id=order.id) }}">delete</a>
             </article>
         {% endfor %}
     </section>

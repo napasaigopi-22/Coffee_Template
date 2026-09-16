@@ -126,6 +126,23 @@ def search_orders_by_customer(customer_name):
     conn.close()
     return orders
 
+def delete_order_detail(order_id):
+    conn = get_connection()
+    orders = conn.execute(
+        """
+        DELETE FROM order_items
+        WHERE order_id = ? """,
+        (order_id,),
+    )
+
+    orders.execute(
+        """DELETE FROM orders
+        WHERE id = ?
+        """,
+        (order_id,),
+    )
+    conn.commit()
+    conn.close()
 
 def search_customer():
     init_db()
@@ -153,6 +170,7 @@ def search_customer():
 
     for item in items:
         print(f"Item: {item['item_name']}, Price: ${item['item_price']:.2f}")
+
 
 
 if __name__ == "__main__":
